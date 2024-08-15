@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.main-slide {
+    width: 100%;
+    height: 100%; /* Adjust height to cover full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+#main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container */
+}
+
+.content {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    max-width: 80%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    opacity: 0; /* Initially hidden */
+    transform: scale(1); /* Initial scale */
+}
+
+.content.show {
+    opacity: 1; /* Show text */
+    transform: scale(1.1); /* Slightly scale up for effect */
+}
+
+.content p {
+    font-size: 2.5em;
+    margin-top: 10px;
+    font-style: italic;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(45deg, #00ffff, #0000ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Add futuristic text animation */
+@keyframes textDestroyCreate {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.5) rotate(360deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.content p.destroy-create {
+    animation: textDestroyCreate 3s forwards;
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    overflow-x: auto;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+}
+
+.slides {
+    width: 120px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.slides:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles for different shapes */
+.slides[data-style="heart"] {
+    background: url('heart-icon.png') no-repeat center center;
+}
+
+.slides[data-style="star"] {
+    background: url('star-icon.png') no-repeat center center;
+}
+
+.slides[data-style="circle"] {
+    border-radius: 50%;
+}
+
+.slides[data-style="diamond"] {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.slides[data-style="hexagon"] {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Surprise style */
+.slides.surprise {
+    animation: surpriseAnimation 3s forwards;
+}
+
+@keyframes surpriseAnimation {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+    .content p {
+        font-size: 1.8em;
+    }
+    .slides {
+        width: 100px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content p {
+        font-size: 1.5em;
+    }
+    .slides {
+        width: 80px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content p {
+        font-size: 1.2em;
+    }
+    .slides {
+        width: 60px;
+        height: 40px;
+    }
+}
+
+
+
